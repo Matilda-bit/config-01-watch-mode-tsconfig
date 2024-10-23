@@ -23,6 +23,10 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
+function add(a: string, b: string): string
+function add(a: number, b: number): number
+function add(a: string, b: number): string
+function add(a: number, b: string): string
 function add(a: Combinable, b: Combinable) {
     //type guards
     if (typeof a === 'string' || typeof b === 'string') {
@@ -111,7 +115,17 @@ moveAnimal({type: 'bird', flyingSpeed: 10});
 // userInputElement.value = 'hi there!';
 
 const userInputElement  = document.getElementById('user-input')!;
+
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = 'hi there!';
-
 }
+
+
+interface ErrorContainer { // { email: '`not a valid email', username: 'Must start with a character'}
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email!',
+  username: 'Must  start with a capital character!'
+};
